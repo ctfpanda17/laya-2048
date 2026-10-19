@@ -44,7 +44,8 @@ python -m playwright install chromium
 
 ### 1. 訓練出模型
 
-模型權重太大沒有放在 repo 裡，依序執行即可重新訓練（RTX 4090 上全部約 7–8 小時）：
+模型權重（4.21 億參數，存成 16 位元約 840MB）超過 GitHub 單檔上限，沒有放在 repo 裡。
+依序執行即可重新訓練（RTX 4090 上全部約 7–8 小時）：
 
 ```bash
 python teach_laya.py gen --games 200     # 老師示範，產生 data_2048.jsonl

@@ -1,4 +1,4 @@
-# 模型權重太大（每個 0.8–1.7GB），不放進 git；用 teach_laya.py 重新訓練，或另外放到 Hugging Face
+# 模型權重太大（每個約 840MB），不放進 git；用 teach_laya.py 重新訓練，或另外放到 Hugging Face
 laya_model/
 laya_2048_model/
 laya_2048_dagger/

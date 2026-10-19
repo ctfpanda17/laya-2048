@@ -155,13 +155,16 @@ def finetune(rows, init_dir, out_dir, epochs, lr, batch):
 
     # 存成和原模型一樣的資料夾結構，laya.load 可以直接讀。
     # 先寫到暫存資料夾再換名，init_dir == out_dir 時也不會把正在讀的設定檔刪掉。
+    # 權重存成 16 位元（和原始 laya 一樣，約 840MB）；laya.load 載入時會轉回 32 位元計算，
+    # 實測和存 32 位元相比，5000 個盤面有 99.96% 選擇相同，檔案小一半。
     from safetensors.torch import save_file
     tmp = out_dir + "_tmp"
     if os.path.exists(tmp):
         shutil.rmtree(tmp)
     shutil.copytree(init_dir, tmp, ignore=shutil.ignore_patterns("model.safetensors", ".cache"))
     model.eval()
-    save_file({k: v.detach().contiguous().cpu() for k, v in model.state_dict().items()},
+    save_file({k: (v.to(torch.float16) if v.is_floating_point() else v).detach().contiguous().cpu()
+               for k, v in model.state_dict().items()},
               os.path.join(tmp, "model.safetensors"))
     del agent, model, opt
     torch.cuda.empty_cache()
