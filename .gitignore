@@ -1,0 +1,15 @@
+# 模型權重太大（每個 0.8–1.7GB），不放進 git；用 teach_laya.py 重新訓練，或另外放到 Hugging Face
+laya_model/
+laya_2048_model/
+laya_2048_dagger/
+*_tmp/
+
+# 訓練資料與紀錄（可重新產生）
+data_*.jsonl
+*.log
+
+# 每次跑 speedrun.py 錄下的影片；示範影片放在 docs/
+videos/
+
+__pycache__/
+*.pyc

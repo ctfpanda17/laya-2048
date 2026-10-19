@@ -1,0 +1,7 @@
+laya>=0.3.22
+playwright
+huggingface_hub
+safetensors
+# torch：訓練與速度賽需要 CUDA 版，請依顯卡驅動從 https://pytorch.org 安裝對應版本，例如
+#   pip install torch --index-url https://download.pytorch.org/whl/cu130
+torch
